@@ -4,10 +4,13 @@ project(sound_exp_0)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(sound_exp_0 src/main.cpp
-        src/sound.h
-        src/sound.cpp
+        src/sound.hpp
         src/player.h
         src/player.cpp
-        src/sndGen.hpp)
+        src/sndgen.h
+        src/filters/filter.hpp
+        src/sndgen.cpp
+        src/filters/linvolchange.h
+)
 
-target_link_libraries(sound_exp_0 sfml-system sfml-window sfml-audio)
+target_link_libraries(sound_exp_0 sfml-system sfml-window sfml-audio sfml-graphics sfml-network)

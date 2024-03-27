@@ -1,13 +1,10 @@
-//
-// Created by zhabkazhaba on 3/19/24.
-//
-
 #ifndef SOUND_EXP_0_PLAYER_H
 #define SOUND_EXP_0_PLAYER_H
 
 #include <vector>
 #include <SFML/Audio.hpp>
-#include "sound.h"
+#include "sound.hpp"
+#include "sndgen.h"
 
 class Player {
 private:
@@ -16,7 +13,7 @@ public:
     Player();
     ~Player();
     void play();
-    void addSound(Sound &o);
+    void addSound(const Sound &o);
     void removeLast();
     void clear();
     void setQueue(std::vector<Sound> &o);
