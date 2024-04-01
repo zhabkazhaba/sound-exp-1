@@ -2,6 +2,7 @@
 #define SOUND_EXP_0_FILTER_HPP
 
 #include <SFML/Config.hpp>
+#include "../sound.hpp"
 
 class Filter {
 public:

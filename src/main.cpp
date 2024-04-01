@@ -1,7 +1,7 @@
 #include <iostream>
 #include "sound.hpp"
 #include "player.h"
-#include "filters/linvolchange.h"
+#include "filters/linvolchange.hpp"
 
 int main() {
     LinVolChange lvc(0.1f);

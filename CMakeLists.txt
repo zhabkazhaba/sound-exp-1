@@ -10,7 +10,9 @@ add_executable(sound_exp_0 src/main.cpp
         src/sndgen.h
         src/filters/filter.hpp
         src/sndgen.cpp
-        src/filters/linvolchange.h
+        src/filters/linvolchange.hpp
+        src/filters/pulsevolchange.hpp
+        src/sample.hpp
 )
 
 target_link_libraries(sound_exp_0 sfml-system sfml-window sfml-audio sfml-graphics sfml-network)

@@ -6,12 +6,12 @@
 #include "filters/filter.hpp"
 #include "sndgen.h"
 
-enum class SoundType {
+enum class SoundType{
     SineWave,
     SawTooth,
     SquareWave,
     TriangleWave // TODO(zhabkazhaba): Add more types
-};
+} snd;
 
 class Sound {
  private:

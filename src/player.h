@@ -5,10 +5,12 @@
 #include <SFML/Audio.hpp>
 #include "sound.hpp"
 #include "sndgen.h"
+#include "sample.hpp"
 
 class Player {
 private:
-    std::vector<Sound> queue;
+    std::vector<Sound> beep_channel;
+    std::vector<Sample> sample_channel;
 public:
     Player();
     ~Player();
@@ -16,8 +18,10 @@ public:
     void addSound(const Sound &o);
     void removeLast();
     void clear();
-    void setQueue(std::vector<Sound> &o);
-    std::vector<Sound> get_queue();
+    void setBeepChannel(std::vector<Sound> &o);
+    std::vector<Sound> getBeepChannel();
+
+    void addSample(const Sample &o);
 };
 
 
