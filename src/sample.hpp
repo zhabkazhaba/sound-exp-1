@@ -2,26 +2,24 @@
 #define SOUND_EXP_0_SAMPLE_HPP
 
 #include <string>
+#include <utility>
 #include "SFML/Audio.hpp"
 
-enum class SampleType {
-    WAV,
-    OGG,
-    FLAC
-};
 
 class Sample {
  private:
     std::string filename;
-    SampleType type;
  public:
-    Sample() : filename("default"), type(SampleType::WAV) {};
-    Sample (std::string filename, SampleType type) : filename(filename), type(type) {};
-    int checkValidity() {
+    Sample() : filename("default") {};
+    Sample (std::string filename) : filename(std::move(filename)) {}; //NOLINT
+    sf::SoundBuffer loadBuffer() {
         sf::SoundBuffer tmp;
         if (!tmp.loadFromFile(filename))
-            return -1;
-        return 0;
+            throw std::runtime_error("Error: Couldn't load buffer.");
+        return tmp;
+    }
+    std::string getFilename() const {
+        return filename;
     }
 };
 

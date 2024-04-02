@@ -30,21 +30,40 @@ std::vector<Sound> Player::getBeepChannel() {
     return beep_channel;
 }
 
-void Player::play() {
-    if (beep_channel.empty()) {
-        std::cerr << "Error: Queue is empty" << std::endl;
-        return;
-    }
-    sf::Sound sound;
-    sf::SoundBuffer buffer;
-    for (auto &i : beep_channel) {
-        if (!buffer.loadFromSamples(i.getSamples(), static_cast<int>(SAMPLE_RATE * i.getDuration()), 1, static_cast<int>(SAMPLE_RATE))) {
-            std::cerr << "Error: Failed to load samples into sound buffer" << std::endl;
+void Player::play(Channel ch) {
+    if (ch == Channel::BEEP_CH1) {
+        if (beep_channel.empty()) {
+            std::cerr << "Error: Channel queue is empty" << std::endl;
             return;
         }
-        sound.setBuffer(buffer);
-        sound.play();
-        while (sound.getStatus() == sf::Sound::Playing) {}
+        sf::Sound sound;
+        sf::SoundBuffer buffer;
+        for (auto &i : beep_channel) {
+            if (!buffer.loadFromSamples(i.getSamples(), static_cast<int>(SAMPLE_RATE * i.getDuration()), 1,
+                                        static_cast<int>(SAMPLE_RATE))) {
+                std::cerr << "Error: Failed to load samples into sound buffer" << std::endl;
+                return;
+            }
+            sound.setBuffer(buffer);
+            sound.play();
+            while (sound.getStatus() == sf::Sound::Playing) {}
+        }
+    } else if (ch == Channel::SAMPLE_CH1) {
+        if (sample_channel.empty()) {
+            std::cerr << "Error: Channel queue is empty";
+            return;
+        }
+        sf::Sound sound;
+        sf::SoundBuffer buffer;
+        for (auto &i : sample_channel) {
+            if (!buffer.loadFromFile(i.getFilename())) {
+                std::cerr << "Error: Failed to load samples into sound buffer" << std::endl;
+                return;
+            }
+            sound.setBuffer(buffer);
+            sound.play();
+            while (sound.getStatus() == sf::Sound::Playing) {}
+        }
     }
 }
 

@@ -7,6 +7,11 @@
 #include "sndgen.h"
 #include "sample.hpp"
 
+enum class Channel {
+    BEEP_CH1,
+    SAMPLE_CH1
+};
+
 class Player {
 private:
     std::vector<Sound> beep_channel;
@@ -14,7 +19,7 @@ private:
 public:
     Player();
     ~Player();
-    void play();
+    void play(Channel ch);
     void addSound(const Sound &o);
     void removeLast();
     void clear();

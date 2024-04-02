@@ -1,10 +1,12 @@
 #include "sndgen.h"
 
+#include <cmath>
+
 namespace sndGen {
     void sineWave(sf::Int16* samples, float frequency, float duration, float volume) {
         for (int i = 0; i < SAMPLE_RATE * duration; ++i) {
             float time = i / SAMPLE_RATE;
-            float value = sin(frequency * TWO_PI * time) * volume;
+            float value = std::sin(frequency * TWO_PI * time) * volume;
             samples[i] = static_cast<sf::Int16>(value * 32767);
         }
     }
@@ -12,7 +14,7 @@ namespace sndGen {
     void sawTooth(sf::Int16* samples, float frequency, float duration, float volume) {
         for (int i = 0; i < SAMPLE_RATE * duration; ++i) {
             float time = i / SAMPLE_RATE;
-            float value = (2 * fmod(time, 1.0f / frequency) * frequency - 1) * volume;
+            float value = (2 * std::fmod(time, 1.0f / frequency) * frequency - 1) * volume;
             samples[i] = static_cast<sf::Int16>(value * 32767);
         }
     }
@@ -20,7 +22,8 @@ namespace sndGen {
     void squareWave(sf::Int16* samples, float frequency, float duration, float volume) {
         for (int i = 0; i < SAMPLE_RATE * duration; ++i) {
             float time = i / SAMPLE_RATE;
-            float value = sin(frequency * TWO_PI * time) * volume;
+            //TODO(zhabkazhaba): fix volume
+            float value = std::sin(frequency * TWO_PI * time) * volume;
             samples[i] = static_cast<sf::Int16>(value > 0 ? 32767 : -32767);
         }
     }
@@ -28,7 +31,7 @@ namespace sndGen {
     void triangleWave(sf::Int16* samples, float frequency, float duration, float volume) {
         for (int i = 0; i < SAMPLE_RATE * duration; ++i) {
             float time = i / SAMPLE_RATE;
-            float value = (2 * volume / M_PI) * asin(sin(frequency * TWO_PI * time));
+            float value = (2 * volume / M_PI) * std::asin(std::sin(frequency * TWO_PI * time));
             samples[i] = static_cast<sf::Int16>(value * 32767);
         }
     }

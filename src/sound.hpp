@@ -11,7 +11,7 @@ enum class SoundType{
     SawTooth,
     SquareWave,
     TriangleWave // TODO(zhabkazhaba): Add more types
-} snd;
+};
 
 class Sound {
  private:

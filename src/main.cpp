@@ -13,6 +13,6 @@ int main() {
     p.addSound(s2);
     p.addSound(s1);
     p.addSound(s3);
-    p.play();
+    p.play(Channel::BEEP_CH1);
     return 0;
 }
